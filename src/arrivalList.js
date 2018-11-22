@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 import React from "react";
 import * as moment from "moment";
 
-import * as stuffActions from "./redux/actions/stuffActions";
+import * as arrivalActions from "./redux/actions/arrivalActions";
 
 
-class StuffList extends React.Component {
+class ArrivalList extends React.Component {
 
   componentDidMount() {
-      this.props.getStuff();
+      this.props.getArrivals();
   }
 
   renderData(val) {
@@ -27,9 +27,9 @@ class StuffList extends React.Component {
 
   render() {
     return (
-      <div className="stuffList">
-        {this.props.stuff.length > 0 ? (
-          this.props.stuff.map((val) => {
+      <div className="arrivalList">
+        {this.props.arrivals.length > 0 ? (
+          this.props.arrivals.map((val) => {
             return this.renderData(val);  
           })
         ) : (
@@ -40,9 +40,9 @@ class StuffList extends React.Component {
   }
 }
 
-StuffList.propTypes = {
-    stuffActions: PropTypes.object,
-    stuff: PropTypes.array,
+ArrivalList.propTypes = {
+    arrivalActions: PropTypes.object,
+    arrivals: PropTypes.array,
 };
 
 function handleDate(date) {
@@ -51,17 +51,17 @@ function handleDate(date) {
 
 function mapStateToProps(state) {
     return {
-        stuff: state.stuff,
+        arrivals: state.arrivals,
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getStuff: () => dispatch(stuffActions.getStuff()),
+        getArrivals: () => dispatch(arrivalActions.getArrivals()),
     };
 }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(StuffList);
+)(ArrivalList);

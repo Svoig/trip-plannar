@@ -4,15 +4,15 @@ function url() {
     return "https://developer.trimet.org/ws/V2/arrivals?locIDs=6849,6850&appID=66B951D96E857D7E9E6883682";
 }
 
-export function getStuffSuccess(json) {
-    return {type: actions.GET_STUFF_SUCCESS, stuff: json.stuff};
+export function getArrivalsSuccess(json) {
+    return {type: actions.GET_ARRIVALS_SUCCESS, arrivals: json.arrivals};
 }
 
-export function getStuffError(error) {
-    return {type: actions.GET_STUFF_ERROR, error};
+export function getArrivalsError(error) {
+    return {type: actions.GET_ARRIVALS_ERROR, error};
 }
 
-export function getStuff() {
+export function getArrivals() {
     return dispatch => {
         return fetch(url(), {
             method: 'GET',
@@ -25,10 +25,10 @@ export function getStuff() {
             return res.json();
         })
         .then(json => {
-            return dispatch(getStuffSuccess({stuff: json.resultSet.arrival}));
+            return dispatch(getArrivalsSuccess({arrivals: json.resultSet.arrival}));
         })
         .catch(error => {
-            return dispatch(getStuffError(error));
+            return dispatch(getArrivalsError(error));
         });
     }
 }

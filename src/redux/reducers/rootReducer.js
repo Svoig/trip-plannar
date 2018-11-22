@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux';
-import stuff from './stuffReducer';
+import arrivals from './arrivalReducer';
+import location from './locationReducer';
 
 const rootReducer = combineReducers({
-    stuff,
+    arrivals,
+    location,
 });
 
 export default rootReducer;
